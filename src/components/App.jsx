@@ -2,6 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid'
 import { Section } from './section/section';
 import { Form } from './contactForm/form';
+import { Filter } from './filter/filter';
 import { Phonebook } from "./phonebook/phonebook";
 
 export class App extends React.Component {
@@ -13,7 +14,6 @@ export class App extends React.Component {
     {id: 'id-4', name: 'Annie Copeland', number: '2279126'},
   ],
     name: '',
-    number: '',
   };
 
   onChangeName = evt => {
@@ -46,19 +46,18 @@ export class App extends React.Component {
     }; 
   };
 
-
   onFindContact = evt => {
-    const name = evt.target.value.toLowerCase()
-    const filtered = this.state.contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(name);
-    })
-    if (name.length > 0) {
-      this.setState({filteredArr: filtered})
-    }
-    else {
-      this.setState({filteredArr: this.state.contacts})
-    }
-  };
+  const name = evt.target.value.toLowerCase()
+  const filtered = this.state.contacts.filter(contact => {
+    return contact.name.toLowerCase().includes(name);
+  })
+  if (name.length > 0) {
+    this.setState({filteredArr: filtered})
+  }
+  else {
+    this.setState({filteredArr: this.state.contacts})
+  }
+    };
 
   onDelete = contactId => {
     this.setState(state => {
@@ -77,21 +76,21 @@ export class App extends React.Component {
     return (
       <div>
       <Section title='Phonebook'>
-        <Form 
-          onSubmitForm={this.onSubmitForm}
+          <Form 
+          onChangeName={this.onChangeName}
           onChangePhone={this.onChangePhone}
-          onChangeName={this.onChangeName}  
+          onSubmitForm={this.onSubmitForm}
           name={name}
           number={number}
           >
         </Form>
         <Section title='Contacts'>
-          <Phonebook
+            <Filter
+            onFindContact={this.onFindContact} />
+            <Phonebook
             data={data}
-            onFindContact={this.onFindContact}
             onDelete={this.onDelete}
             filter={filtered}
-
           />
         </Section>
         </Section>

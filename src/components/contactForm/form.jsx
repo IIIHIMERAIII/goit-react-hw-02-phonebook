@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { FormStyle, Label, FormInput, FormButton } from './form.styled';
+
+
 export const Form = ({
     onSubmitForm,
     onChangeName,
