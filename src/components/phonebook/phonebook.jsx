@@ -1,17 +1,13 @@
 import PropTypes from 'prop-types';
-import {StyledDiv, List, ListItem, ListButton} from "./phonebook.style"
+import { StyledDiv, List, ListItem, ListButton } from "./phonebook.style"
 export const Phonebook = ({
-    data,
     filter,
     onDelete,
 }) => {
-    if (filter !== undefined) {
-        data = filter;
-    }
     return (
         <StyledDiv>
             <List>
-                {data.map(contact => (
+                {filter.map(contact => (
                     <ListItem key={contact.id}>
                         <span>{contact.name}: {contact.number}</span>
                         <ListButton onClick={() => onDelete(contact.id)} type="button">Delete</ListButton>

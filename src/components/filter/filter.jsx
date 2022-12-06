@@ -1,13 +1,16 @@
-import {Label, Input} from './styled'
+import { Label, Input } from './styled'
 
-export const Filter = ({onFindContact}) => {
+export const Filter = ({ onChange, value }) => {
     return (
         <Label>
             Fint contacts by name
             <Input
                 type="text"
-                onChange={onFindContact}
+                name="filter"
+                value={value}
+                onChange={onChange}
             >
             </Input>
-        </Label>)
+        </Label>
+    )
 }
